@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.3.0-beta.6
+
+### Patch Changes
+
+- 867fdce: Stop the `dependency_impairment` and `dependency_impairment_cardinality` storyboards from failing sellers whose selected format option is not an image format (adcp#8770). Both storyboards send a fixed 300x250 image creative against the first product's first format option. When that option is a `display_tag`, `video_vast` or other non-image kind, the creative phases are now skipped instead of failing a seller that correctly refuses an image it does not accept. Image sellers run the storyboards unchanged.
+- 3bb0710: Build legacy inline creative manifests from the captured format's exact required slots, preserving the legacy wire and preflighting both manifests before any purchase.
+- 8f849f9: Gate `product_signal_targeting` and `cross_path_targeting_provenance` on wholesale support in both `media_buy.buying_modes` and `signals.discovery_modes`. A seller that advertises only brief discovery no longer runs them. Their negative probes now cascade-skip when product discovery fails, instead of sending an unresolved `$context.product_id`.
+- 9395a3e: Docs: Python `adcp` 10.0.0b13 is on PyPI, adopting the signed `3.3.0-beta.5` bundle and negotiating only `3.3-beta.5`. The 3.3 beta program page, the beta checkpoint table, and Choose your SDK now name it, with its install command and `adcp-reporting-storage` 0.2.0b3 for Reliable Reporting storage.
+- e64e858: Docs: refresh the 3.3 release notes, What's new, the 3.2 to 3.3 migration guide, and the 3.3 beta program page through `3.3.0-beta.5`. Adds beta.4 and beta.5 to the checkpoint and wire-pin tables, with curated sections. Beta.4 covers the reporting-subscription coverage fixes and probe reset, `replace` that transfers assignment settings, tracker-slot limits, `BUDGET_TOO_LOW` details, `creative.supports_provenance`, `opportunity` on explicit-package buys, undefined-property reporting, and the new storyboards. Beta.5 covers match keys, the stable `sales-fixed-rate` specialism, and the bundled Public Suffix List. The SDK guidance now records that `@adcp/sdk` 17.0.0-beta.18 and later and Python `adcp` 10.0.0b12 support beta.4, and the in-review tables reflect the 3.3.0 milestone as of 2026-11-08.
+- 9db8225: Docs: the public test agent's opt-in 3.3 preview moves to `3.3-beta.4`, the beta that `@adcp/sdk` 17.0.0-beta.18 and later negotiate. The 3.3 beta program page and the quickstart name the new pin, and the page notes that `3.3.0-beta.5` is published but no SDK negotiates it yet. The preview now follows the beta the current SDK prerelease negotiates rather than the latest published beta. The beta tracker records that supported match keys merged in #8446.
+- 4942cab: Docs: the public test agent's opt-in 3.3 preview moves to `3.3-beta.5`, the beta that `@adcp/sdk` 17.0.0-beta.21 and later negotiate. The 3.3 beta program page and the quickstart name the new pin. The SDK guidance and the beta checkpoint table record that `@adcp/sdk` 17.0.0-beta.21 and later bundle `3.3.0-beta.5`, and that 17.0.0-beta.18 through 17.0.0-beta.20 bundle beta.4. Python adoption of beta.5 is in flight.
+
 ## 3.3.0-beta.5
 
 ### Minor Changes
